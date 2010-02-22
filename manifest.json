@@ -1,0 +1,16 @@
+{
+  "name": "Decentralized Addresses",
+  "version": "0.1",
+  "description": "Resolve @ addresses into links to users profiles.",
+   "browser_action": {
+     "default_icon": "icon.png"
+   },
+   "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "file://*/*"],
+      "js": ["filter.js"],
+	  "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
+}
