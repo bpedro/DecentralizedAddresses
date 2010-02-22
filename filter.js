@@ -1,3 +1,18 @@
+time = {
+    
+    start_mili : null,
+    start : function()
+    {
+        var date1 = new Date(); 
+        this.start_mili= date1.getTime();
+    },
+    end : function(){
+        var date2 = new Date(); 
+        var milliseconds2 = date2.getTime(); 
+        return milliseconds2 - this.start_mili;
+    }
+}
+
 function findAncestor(el, name)
 {
     if (el.nodeName==name) {
@@ -21,6 +36,7 @@ function filter_cache()
 
 function filter()
 {
+        time.start();
         var xPathResult = document.evaluate('.//text()[normalize-space(.)!=""]',
         document.body,
         null,
@@ -34,7 +50,10 @@ function filter()
                 textNode.parentNode.innerHTML = textNode.parentNode.innerHTML.replace(/([^A-Za-z0-9_]|^)@([A-Za-z0-9_]+)/g, '$1@<a href="http://twitter.com/$2">$2</a>');
             }
         }
+        console.log("time : "+time.end());
 }
+
 filter();
 var tmp = document.body.innerHTML;
 setInterval('filter_cache()', 5000);
+
