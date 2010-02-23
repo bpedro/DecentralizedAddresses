@@ -1,10 +1,12 @@
-time = {
-    
-    start_mili : null,
+Time = function(){
+    this.start()
+};
+
+Time.prototype = {
     start : function()
     {
         var date1 = new Date(); 
-        this.start_mili= date1.getTime();
+        this.start_mili = date1.getTime();
     },
     end : function(){
         var date2 = new Date(); 
@@ -26,17 +28,19 @@ function findAncestor(el, name)
 
 function filter_cache()
 {
+    time1 = new Time();
     if(tmp != document.body.innerHTML)
     {
         console.log("new_stuff");
         tmp = document.body.innerHTML;
         filter(); 
     }
+    console.log("time total : "+time1.end());
 }
 
 function filter()
 {
-        time.start();
+        var timeInternal = new Time();
         var xPathResult = document.evaluate('.//text()[normalize-space(.)!=""]',
         document.body,
         null,
@@ -46,11 +50,11 @@ function filter()
             var textNode = xPathResult.snapshotItem(i);
             
             if (textNode.data.match(/([^A-Za-z0-9_]|^)@([A-Za-z0-9_]+)/g) &&
-                !findAncestor(textNode,'A')) {
-                textNode.parentNode.innerHTML = textNode.parentNode.innerHTML.replace(/([^A-Za-z0-9_]|^)@([A-Za-z0-9_]+)/g, '$1@<a href="http://twitter.com/$2">$2</a>');
+               !findAncestor(textNode,'A')) {
+               textNode.parentNode.innerHTML = textNode.parentNode.innerHTML.replace(/([^A-Za-z0-9_]|^)@([A-Za-z0-9_]+)/g, '$1@<a href="http://twitter.com/$2">$2</a>');
             }
         }
-        console.log("time : "+time.end());
+        console.log("time internal : "+timeInternal.end());
 }
 
 filter();
