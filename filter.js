@@ -19,11 +19,13 @@ function findAncestor(el, name)
 {
     if (el.nodeName==name) {
         return true;
+    } else {
+        if (el.parentNode) {
+            return arguments.callee(el.parentNode, name);
+        } else {
+            return false;
+        }
     }
-    else if (el.parentNode) {
-      return arguments.callee(el.parentNode, name);
-    }
-    else return false;
 }
 
 function filter_cache()
@@ -60,4 +62,3 @@ function filter()
 filter();
 var tmp = document.body.innerHTML;
 setInterval('filter_cache()', 5000);
-
