@@ -8,8 +8,11 @@
    "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*", "file://*/*"],
-      "js": ["filter.js"],
-	  "run_at": "document_end",
+      "js": [
+             "lib/Timer.js",
+             "filter.js"
+            ],
+      "run_at": "document_end",
       "all_frames": true
     }
   ]
