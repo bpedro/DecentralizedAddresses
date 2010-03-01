@@ -11,6 +11,8 @@
       "js": [
              "lib/Timer.js",
              "lib/Filter.js",
+             "lib/Filter/Twitter.js",
+             "lib/Filter/Facebook.js",
              "filter.js"
             ],
       "run_at": "document_end",
