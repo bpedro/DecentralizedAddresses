@@ -5,10 +5,12 @@ function filter_cache()
     {
         console.log("new_stuff");
         tmp = document.body.innerHTML;
-        filter.replace();
+        for (var i in filter) {
+            filter[i].replace();
+        }
     }
     console.log("time total : "+time1.end());
 }
-var filter = new Filter();
+var filter = [new Filter_Facebook(), new Filter_Twitter()];
 var tmp = document.body.innerHTML;
 setInterval('filter_cache()', 5000);
